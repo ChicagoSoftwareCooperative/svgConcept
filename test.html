@@ -7,24 +7,33 @@
 
   <script>
     window.onload = function() {
-      var line = document.querySelector('#line');
-      var length = line.getTotalLength();
-      line.setAttribute("style", "\
-          stroke-dasharray: " + length + ";\
-          stroke-dashoffset: " + length +";\
-          animation: dash 1s linear forwards;\
-      ");
-      console.log(length);
+
+        window.onscroll = function() {
+          var line = document.querySelector('#line');
+          var length = line.getTotalLength();
+          // be fully drawn when we have scrolled to 400
+          var offset = length - (length * (window.scrollY / 100) || 0);
+          console.log(offset);
+          if (offset <= length) {
+            line.setAttribute("style", "\
+                stroke-dasharray: " + length + ";\
+                stroke-dashoffset: " + offset +";\
+            ");
+          }
+      }
+
     }
   </script>
 
   <body>
-    <svg width="636px" height="268px" viewBox="-23 161 636 268" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <div class="container">
+      <svg width="636px" height="268px" viewBox="-23 161 636 268" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-        <defs></defs>
-        <g id="phonesvg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-22.000000, 162.000000)">
-        <path d="M397.288991,24.5021441 C393.651638,24.9250537 389.823678,24.5342912 386.376932,25.770873 C378.613923,28.5559916 371.067106,32.0988076 364.047305,36.428195 C346.147769,47.4675435 361.499451,50.9202575 373.439863,47.5939997 C379.040823,46.0337323 417.366692,30.9257809 393.991288,23.4881523" id="line" stroke="#979797"></path>
-        </g>
-    </svg>
+          <defs></defs>
+          <g id="phonesvg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-22.000000, 162.000000)">
+          <path d="M397.288991,24.5021441 C393.651638,24.9250537 389.823678,24.5342912 386.376932,25.770873 C378.613923,28.5559916 371.067106,32.0988076 364.047305,36.428195 C346.147769,47.4675435 361.499451,50.9202575 373.439863,47.5939997 C379.040823,46.0337323 417.366692,30.9257809 393.991288,23.4881523" id="line" stroke="#979797"></path>
+          </g>
+      </svg>
+    </div>
   </body>
 </html>
