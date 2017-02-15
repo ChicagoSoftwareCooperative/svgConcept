@@ -8,18 +8,22 @@
   <script>
     window.onload = function() {
 
+        var line = document.querySelector('#line');
+        line.style.visibility = 'hidden';
+
         window.onscroll = function() {
           var line = document.querySelector('#line');
           var length = line.getTotalLength();
           // be fully drawn when we have scrolled to 400
-          var offset = length - (length * (window.scrollY / 100) || 0);
+          var offset = length - (length * (window.scrollY / 100));
           console.log(offset);
-          if (offset <= length) {
+          if (offset >= 0) {
             line.setAttribute("style", "\
                 stroke-dasharray: " + length + ";\
                 stroke-dashoffset: " + offset +";\
             ");
           }
+          line.style.visibility = 'visible';
       }
 
     }
