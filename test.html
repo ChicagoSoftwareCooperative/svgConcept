@@ -21,7 +21,7 @@
             line = lines[i];
             var length = line.getTotalLength();
             // be fully drawn when we have scrolled to 400
-            var offset = length - (length * (window.scrollY / 100));
+            var offset = length - (length * (window.scrollY / 200));
             console.log(offset);
             if (offset < 0) {
               offset = 0
